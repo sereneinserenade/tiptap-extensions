@@ -9,12 +9,16 @@ export const searchAndReplaceDemo: Demo = {
   importName: 'SearchAndReplace',
   mount(root) {
     const host = h('div', { className: 'editor' })
-    const editor = createEditor(host, [SearchAndReplace], '<p>The cat sat. A Cat ran. The cat slept.</p><p>Try searching for <code>cat</code> or a regex like <code>c.t</code>.</p>')
+    const content = '<p>The cat sat. A Cat ran. The cot was empty.</p><p>Search for <code>cat</code>, or turn on regex and try <code>c.t</code>.</p>'
+    // regex is an extension option, so the toggle recreates the editor
+    const make = (regex: boolean, html: string) => createEditor(host, [SearchAndReplace.configure({ disableRegex: !regex })], html)
+    let editor = make(false, content)
     const count = h('span', { className: 'muted' })
 
     const search = h('input', { placeholder: 'Search', 'aria-label': 'Search' })
     const replace = h('input', { placeholder: 'Replace', 'aria-label': 'Replace' })
     const caseSensitive = h('input', { type: 'checkbox' })
+    const regex = h('input', { type: 'checkbox' })
 
     const update = () => {
       const { results, resultIndex } = editor.storage.searchAndReplace
@@ -24,12 +28,28 @@ export const searchAndReplaceDemo: Demo = {
     search.oninput = () => editor.chain().setSearchTerm(search.value).resetIndex().run()
     replace.oninput = () => editor.commands.setReplaceTerm(replace.value)
     caseSensitive.onchange = () => editor.commands.setCaseSensitive(caseSensitive.checked)
-    editor.on('transaction', update)
+    const wire = () => {
+      editor.on('transaction', update)
+      editor.commands.setCaseSensitive(caseSensitive.checked)
+      editor.commands.setReplaceTerm(replace.value)
+      editor.commands.setSearchTerm(search.value)
+    }
+
+    regex.onchange = () => {
+      const html = editor.getHTML()
+      editor.destroy()
+      host.replaceChildren()
+      editor = make(regex.checked, html)
+      wire()
+    }
+
+    wire()
 
     root.append(
       h('div', { className: 'toolbar' },
         search, replace,
         h('label', {}, caseSensitive, ' Case sensitive'),
+        h('label', {}, regex, ' Regex'),
         button('Previous', () => editor.commands.previousSearchResult()),
         button('Next', () => editor.commands.nextSearchResult()),
         button('Replace', () => editor.commands.replace()),

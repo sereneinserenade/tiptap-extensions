@@ -27,19 +27,22 @@ export const commentDemo: Demo = {
     }
 
     const editor = createEditor(host, [CommentExtension.configure({ onCommentActivated: render })],
-      '<p>Select any words in this paragraph, then press <strong>Add comment</strong>. Click inside commented text to highlight its thread.</p>')
+      '<p>Select any words in this paragraph, type a comment above and press <strong>Add comment</strong>. Click inside commented text to highlight its thread.</p>')
 
+    const input = h('input', { placeholder: 'Comment', 'aria-label': 'Comment text' })
     const add = button('Add comment', () => {
-      if (editor.state.selection.empty) return
-      const text = prompt('Comment')
-      if (!text) return
+      const text = input.value.trim()
+      if (editor.state.selection.empty || !text) return
       const id = `c${Date.now()}`
       threads.set(id, text)
       editor.chain().focus().setComment(id).run()
+      input.value = ''
       render(id)
     })
+    // keep the editor selection when clicking the button
+    add.onmousedown = (e) => e.preventDefault()
 
-    root.append(h('div', { className: 'toolbar' }, add), h('div', { className: 'split' }, host, list))
+    root.append(h('div', { className: 'toolbar' }, input, add), h('div', { className: 'split' }, host, list))
     render(null)
 
     return () => editor.destroy()

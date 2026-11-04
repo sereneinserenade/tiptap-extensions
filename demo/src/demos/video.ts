@@ -13,10 +13,11 @@ export const videoDemo: Demo = {
     const host = h('div', { className: 'editor' })
     const editor = createEditor(host, [Video], `<p>Drop a video file here or use the button.</p><video src="${SAMPLE}"></video><p></p>`)
 
+    const url = h('input', { value: SAMPLE, 'aria-label': 'Video URL', className: 'grow' })
+
     root.append(
-      h('div', { className: 'toolbar' }, button('Insert video by URL', () => {
-        const src = prompt('Video URL', SAMPLE)
-        if (src) editor.chain().focus().setVideo(src).run()
+      h('div', { className: 'toolbar' }, url, button('Insert video', () => {
+        if (url.value) editor.chain().focus().setVideo(url.value).run()
       })),
       host,
     )
