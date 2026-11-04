@@ -17,7 +17,7 @@ import { CommentExtension } from '@sereneinserenade/tiptap-extensions'
 | Extension | Import path | What it does |
 | --- | --- | --- |
 | `CommentExtension` | `/comment` | Google Docs style comment marks keyed by an id |
-| `SearchAndReplace` | `/search-and-replace` | Find, step through and replace, with regex and case options |
+| `SearchAndReplace` | `/search-and-replace` | Find, step through and replace, with case and opt-in regex (`disableRegex: false`) |
 | `TrackChangesKit` | `/track-changes` | Word style suggestions with accept and reject |
 | `LanguageTool` | `/languagetool` | Grammar and spell checking via a LanguageTool server |
 | `ResizableMedia` | `/media-resize` | Resize, align, float and delete images and videos |
@@ -48,6 +48,7 @@ The old `@sereneinserenade/tiptap-*` packages keep working. To switch, change th
 
 - Tiptap 3 only. Stay on the old packages for Tiptap 2.
 - Named exports only, no default exports.
+- `SearchAndReplace` fixes `replace` acting on the first result instead of the current one, and the index staying past the end after replacing the last result.
 - `SnippetExtension` is now `Snippet` and reads the `snippet` drag data type by default.
 - `LanguageTool` no longer bundles Dexie or lodash. Pass `isIgnored` and `onIgnore` to persist ignored words, and use `acceptLanguageToolSuggestion(text)` to apply a fix. The default `apiUrl` is the public LanguageTool API.
 - `ResizableMedia` no longer needs Vue. The toolbar and resize handles are plain DOM.
@@ -61,6 +62,7 @@ npm run demo              # demo site with live reload
 npm test                  # vitest
 npm run build             # dist via tsup
 npm run check:treeshake   # proves each export bundles alone
+npm run check:types       # type resolution across Node and bundler setups
 ```
 
 ## License

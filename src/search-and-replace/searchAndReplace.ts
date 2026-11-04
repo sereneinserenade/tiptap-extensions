@@ -191,16 +191,12 @@ function processSearches(
 
 const replace = (
 	replaceTerm: string,
-	results: Range[],
+	result: Range | undefined,
 	{ state, dispatch }: { state: EditorState; dispatch: Dispatch },
 ) => {
-	const firstResult = results[0];
+	if (!result) return;
 
-	if (!firstResult) return;
-
-	const { from, to } = results[0];
-
-	if (dispatch) dispatch(state.tr.insertText(replaceTerm, from, to));
+	if (dispatch) dispatch(state.tr.insertText(replaceTerm, result.from, result.to));
 };
 
 const rebaseNextResult = (
@@ -354,9 +350,13 @@ export const SearchAndReplace = Extension.create<
 			replace:
 				() =>
 				({ editor, state, dispatch }) => {
-					const { replaceTerm, results } = editor.storage.searchAndReplace;
+					const { replaceTerm, results, resultIndex } =
+						editor.storage.searchAndReplace;
 
-					replace(replaceTerm, results, { state, dispatch });
+					replace(replaceTerm, results[resultIndex] ?? results[0], {
+						state,
+						dispatch,
+					});
 
 					return false;
 				},
@@ -418,12 +418,26 @@ export const SearchAndReplace = Extension.create<
 							return DecorationSet.empty;
 						}
 
-						const { decorationsToReturn, results } = processSearches(
+						const regex = getRegex(searchTerm, disableRegex, caseSensitive);
+
+						let { decorationsToReturn, results } = processSearches(
 							doc,
-							getRegex(searchTerm, disableRegex, caseSensitive),
+							regex,
 							searchResultClass,
 							resultIndex,
 						);
+
+						// replacing the last result shrinks the list, wrap to the first one
+						if (results.length && resultIndex >= results.length) {
+							editor.storage.searchAndReplace.resultIndex = 0;
+							setLastResultIndex(0);
+							({ decorationsToReturn, results } = processSearches(
+								doc,
+								regex,
+								searchResultClass,
+								0,
+							));
+						}
 
 						editor.storage.searchAndReplace.results = results;
 
