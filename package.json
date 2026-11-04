@@ -1,0 +1,153 @@
+{
+  "name": "@sereneinserenade/tiptap-extensions",
+  "version": "0.1.0",
+  "description": "Tree-shakable Tiptap 3 extensions: comments, search and replace, track changes, LanguageTool, media resize, video, snippets, inline suggestions and autocomplete.",
+  "license": "MIT",
+  "author": "Jeet Mandaliya (https://github.com/sereneinserenade)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sereneinserenade/tiptap-extensions.git"
+  },
+  "homepage": "https://sereneinserenade.github.io/tiptap-extensions/",
+  "keywords": [
+    "tiptap",
+    "tiptap-extension",
+    "prosemirror",
+    "rich-text",
+    "editor"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./comment": {
+      "import": {
+        "types": "./dist/comment/index.d.ts",
+        "default": "./dist/comment/index.js"
+      },
+      "require": {
+        "types": "./dist/comment/index.d.cts",
+        "default": "./dist/comment/index.cjs"
+      }
+    },
+    "./search-and-replace": {
+      "import": {
+        "types": "./dist/search-and-replace/index.d.ts",
+        "default": "./dist/search-and-replace/index.js"
+      },
+      "require": {
+        "types": "./dist/search-and-replace/index.d.cts",
+        "default": "./dist/search-and-replace/index.cjs"
+      }
+    },
+    "./inline-suggestion": {
+      "import": {
+        "types": "./dist/inline-suggestion/index.d.ts",
+        "default": "./dist/inline-suggestion/index.js"
+      },
+      "require": {
+        "types": "./dist/inline-suggestion/index.d.cts",
+        "default": "./dist/inline-suggestion/index.cjs"
+      }
+    },
+    "./autocomplete": {
+      "import": {
+        "types": "./dist/autocomplete/index.d.ts",
+        "default": "./dist/autocomplete/index.js"
+      },
+      "require": {
+        "types": "./dist/autocomplete/index.d.cts",
+        "default": "./dist/autocomplete/index.cjs"
+      }
+    },
+    "./video": {
+      "import": {
+        "types": "./dist/video/index.d.ts",
+        "default": "./dist/video/index.js"
+      },
+      "require": {
+        "types": "./dist/video/index.d.cts",
+        "default": "./dist/video/index.cjs"
+      }
+    },
+    "./snippet": {
+      "import": {
+        "types": "./dist/snippet/index.d.ts",
+        "default": "./dist/snippet/index.js"
+      },
+      "require": {
+        "types": "./dist/snippet/index.d.cts",
+        "default": "./dist/snippet/index.cjs"
+      }
+    },
+    "./languagetool": {
+      "import": {
+        "types": "./dist/languagetool/index.d.ts",
+        "default": "./dist/languagetool/index.js"
+      },
+      "require": {
+        "types": "./dist/languagetool/index.d.cts",
+        "default": "./dist/languagetool/index.cjs"
+      }
+    },
+    "./media-resize": {
+      "import": {
+        "types": "./dist/media-resize/index.d.ts",
+        "default": "./dist/media-resize/index.js"
+      },
+      "require": {
+        "types": "./dist/media-resize/index.d.cts",
+        "default": "./dist/media-resize/index.cjs"
+      }
+    },
+    "./track-changes": {
+      "import": {
+        "types": "./dist/track-changes/index.d.ts",
+        "default": "./dist/track-changes/index.js"
+      },
+      "require": {
+        "types": "./dist/track-changes/index.d.cts",
+        "default": "./dist/track-changes/index.cjs"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "check:treeshake": "node scripts/check-treeshake.mjs",
+    "demo": "vite demo",
+    "demo:build": "vite build demo"
+  },
+  "peerDependencies": {
+    "@tiptap/core": "^3.0.0",
+    "@tiptap/pm": "^3.0.0"
+  },
+  "devDependencies": {
+    "@tiptap/core": "^3.32.2",
+    "@tiptap/pm": "^3.32.2",
+    "@tiptap/starter-kit": "^3.32.2",
+    "esbuild": "^0.28.2",
+    "jsdom": "^30.1.3",
+    "tsup": "^9.0.0",
+    "typescript": "^6.0.3",
+    "vite": "^8.3.5",
+    "vitest": "^5.1.0"
+  }
+}
