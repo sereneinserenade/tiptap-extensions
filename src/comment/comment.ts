@@ -27,7 +27,9 @@ export interface MarkWithRange {
 }
 
 export interface CommentOptions {
+  /** Attributes added to every comment `<span>`. */
   HTMLAttributes: Record<string, any>;
+  /** Called with the id of the comment under the cursor, or `null` when the cursor leaves it. */
   onCommentActivated: (commentId: string | null) => void;
 }
 

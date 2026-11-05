@@ -1,0 +1,9 @@
+export { AutocompleteDemo } from './autocomplete';
+export { CommentDemo } from './comment';
+export { InlineSuggestionDemo } from './inline-suggestion';
+export { LanguageToolDemo } from './languagetool';
+export { MediaResizeDemo } from './media-resize';
+export { SearchAndReplaceDemo } from './search-and-replace';
+export { SnippetDemo } from './snippet';
+export { TrackChangesDemo } from './track-changes';
+export { VideoDemo } from './video';

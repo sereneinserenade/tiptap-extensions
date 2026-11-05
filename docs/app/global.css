@@ -1,0 +1,75 @@
+@import 'tailwindcss';
+@import 'fumadocs-ui/css/neutral.css';
+@import 'fumadocs-ui/css/preset.css';
+
+html {
+  scrollbar-gutter: stable;
+}
+
+html > body[data-scroll-locked] {
+  margin-right: 0px !important;
+  --removed-body-scroll-bar-size: 0px !important;
+}
+
+/* Styles for the extensions, which ship no CSS of their own */
+:root {
+  --ins: #d9f5e3;
+  --ins-text: #12663a;
+  --del: #fde2e1;
+  --del-text: #a3201b;
+  --mark: #fff1b8;
+  --mark-strong: #ffcf4d;
+}
+
+.dark {
+  --ins: #173d27;
+  --ins-text: #8fe0ad;
+  --del: #4a1e1c;
+  --del-text: #ffaaa5;
+  --mark: #4d4214;
+  --mark-strong: #8a5a12;
+}
+
+.demo-editor { min-height: 202px; }
+.demo-editor .ProseMirror {
+  min-height: 200px;
+  padding: 16px 20px;
+  border: 1px solid var(--color-fd-border);
+  border-radius: 10px;
+  background: var(--color-fd-background);
+  outline: none;
+  line-height: 1.6;
+}
+.demo-editor .ProseMirror:focus { border-color: var(--color-fd-primary); }
+.demo-editor .ProseMirror > * + * { margin-top: 0.75em; }
+.demo-editor .ProseMirror h3 { font-weight: 600; font-size: 1.1em; }
+.demo-editor .ProseMirror ul { list-style: disc; padding-left: 1.5em; }
+.demo-editor .ProseMirror code { font-family: var(--font-mono, ui-monospace, monospace); font-size: 0.9em; background: var(--color-fd-muted); padding: 1px 4px; border-radius: 4px; }
+.demo-editor video, .demo-editor img { max-width: 100%; }
+
+span[data-comment-id] { background: var(--mark); border-bottom: 2px solid var(--mark-strong); }
+
+.search-result { background: var(--mark); }
+.search-result-current { background: var(--mark-strong); }
+
+.ins { background: var(--ins); color: var(--ins-text); text-decoration: none; }
+.del { background: var(--del); color: var(--del-text); text-decoration: line-through; }
+.formatChange { border-bottom: 2px dotted var(--color-fd-primary); }
+
+.lt { border-bottom: 2px solid #e5484d; cursor: pointer; }
+.lt-grammar, .lt-style, .lt-typographical { border-bottom-color: #f5a524; }
+
+[data-inline-suggestion]::after { content: attr(data-inline-suggestion); color: var(--color-fd-muted-foreground); pointer-events: none; }
+.autocomplete-suggestion::after { content: attr(data-autocomplete); color: var(--color-fd-muted-foreground); pointer-events: none; }
+
+.media-node-view { margin: 12px 0; }
+.media-node-view[data-float='left'] { margin-right: 16px; }
+.media-node-view[data-float='right'] { margin-left: 16px; }
+.media-node-view img, .media-node-view video { border-radius: 8px; }
+.media-node-view.ProseMirror-selectednode img, .media-node-view.ProseMirror-selectednode video { outline: 2px solid var(--color-fd-primary); }
+.media-node-view__handle:hover { background: color-mix(in srgb, var(--color-fd-primary) 40%, transparent); }
+.media-node-view__toolbar { position: absolute; top: 8px; left: 8px; display: flex; gap: 2px; padding: 4px; background: var(--color-fd-popover); color: var(--color-fd-popover-foreground); border: 1px solid var(--color-fd-border); border-radius: 8px; box-shadow: 0 4px 12px rgb(0 0 0 / 0.12); }
+.media-node-view__toolbar[hidden] { display: none; }
+.media-node-view__toolbar button { padding: 4px; border-radius: 4px; display: grid; place-items: center; }
+.media-node-view__toolbar button:hover { background: var(--color-fd-accent); }
+.media-node-view__toolbar button.is-active { background: var(--color-fd-primary); color: var(--color-fd-primary-foreground); }

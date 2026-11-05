@@ -1,0 +1,18 @@
+{
+  "title": "Tiptap Extensions",
+  "pages": [
+    "index",
+    "styling",
+    "migration",
+    "---Extensions---",
+    "comment",
+    "search-and-replace",
+    "track-changes",
+    "languagetool",
+    "media-resize",
+    "inline-suggestion",
+    "autocomplete",
+    "video",
+    "snippet"
+  ]
+}
