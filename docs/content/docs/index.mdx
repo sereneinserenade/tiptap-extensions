@@ -1,0 +1,43 @@
+---
+title: Getting started
+description: Nine Tiptap 3 extensions in one tree-shakable package.
+---
+
+## Install
+
+```bash
+npm i @sereneinserenade/tiptap-extensions
+```
+
+`@tiptap/core` and `@tiptap/pm` version 3 are peer dependencies, so your editor setup already has them.
+
+## Use
+
+Import each extension from its own path, or from the package root. Both give the same bundle, because the package is marked side effect free.
+
+```ts
+import { Editor } from '@tiptap/core'
+import StarterKit from '@tiptap/starter-kit'
+import { CommentExtension } from '@sereneinserenade/tiptap-extensions/comment'
+
+new Editor({
+  element: document.querySelector('#editor')!,
+  extensions: [StarterKit, CommentExtension],
+})
+```
+
+The extensions use no UI framework. They work the same with React, Vue, Svelte or plain JavaScript. The demos on this site use `@tiptap/react`.
+
+## Extensions
+
+<Cards>
+  <Card title="Comments" href="/docs/comment" description="Google Docs style comment marks keyed by an id." />
+  <Card title="Search and replace" href="/docs/search-and-replace" description="Find, step through and replace." />
+  <Card title="Track changes" href="/docs/track-changes" description="Word style suggestions you can accept or reject." />
+  <Card title="LanguageTool" href="/docs/languagetool" description="Grammar and spell checking." />
+  <Card title="Media resize" href="/docs/media-resize" description="Resize, align and float images and videos." />
+  <Card title="Inline suggestion" href="/docs/inline-suggestion" description="Copilot style ghost text." />
+  <Card title="Autocomplete" href="/docs/autocomplete" description="Type / to fill text at the cursor." />
+  <Card title="Video" href="/docs/video" description="Video node with URL and file drop." />
+  <Card title="Snippets" href="/docs/snippet" description="Drag saved HTML snippets into the editor." />
+</Cards>

@@ -1,0 +1,12 @@
+---
+title: Migrating from the single packages
+description: The old @sereneinserenade/tiptap-* packages keep working. To switch, change the import path.
+---
+
+- Tiptap 3 only. Stay on the old packages for Tiptap 2.
+- Named exports only, no default exports.
+- `SearchAndReplace` fixes `replace` acting on the first result instead of the current one, and the index staying past the end after replacing the last result.
+- `SnippetExtension` is now `Snippet` and reads the `snippet` drag data type by default.
+- `LanguageTool` no longer bundles Dexie or lodash. Pass `isIgnored` and `onIgnore` to persist ignored words, and use `acceptLanguageToolSuggestion(text)` to apply a fix. The default `apiUrl` is the public LanguageTool API.
+- `ResizableMedia` no longer needs Vue. The toolbar and resize handles are plain DOM.
+- `TrackChanges` takes a `types` option for the block nodes it tracks, and users may set `name` instead of `first_name` and `last_name`.

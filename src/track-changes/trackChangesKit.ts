@@ -5,6 +5,7 @@ import { TrackChanges } from './trackChanges'
 import type { TrackChangesOptions } from './trackChanges'
 
 export interface TrackChangesKitOptions {
+  /** Options for the `TrackChanges` extension, or `false` to leave it out. */
   trackChanges: Partial<TrackChangesOptions> | false
 }
 

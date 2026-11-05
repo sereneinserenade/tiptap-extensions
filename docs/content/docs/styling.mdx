@@ -1,0 +1,32 @@
+---
+title: Styling
+description: The extensions ship no CSS. Style these class names and attributes.
+---
+
+| Extension | Selectors |
+| --- | --- |
+| Comments | `span[data-comment-id]` |
+| Search and replace | `.search-result`, `.search-result-current` |
+| Track changes | `.ins`, `.del`, `.formatChange` |
+| LanguageTool | `.lt` and `.lt-<issueType>`, e.g. `.lt-misspelling`, `.lt-grammar` |
+| Inline suggestion | `[data-inline-suggestion]` |
+| Autocomplete | `.autocomplete-suggestion` |
+| Media resize | `.media-node-view`, `.media-node-view__toolbar`, `.media-node-view__handle` |
+
+Ghost text comes from a data attribute, so show it with a pseudo element.
+
+```css
+[data-inline-suggestion]::after {
+  content: attr(data-inline-suggestion);
+  color: gray;
+  pointer-events: none;
+}
+
+.autocomplete-suggestion::after {
+  content: attr(data-autocomplete);
+  color: gray;
+  pointer-events: none;
+}
+```
+
+The styles behind the demos on this site are in [`docs/app/global.css`](https://github.com/sereneinserenade/tiptap-extensions/blob/main/docs/app/global.css).

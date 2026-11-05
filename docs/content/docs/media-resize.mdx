@@ -1,0 +1,32 @@
+---
+title: Media resize
+description: Images and videos you can resize by dragging, align, float or delete. Plain DOM, works with any framework.
+---
+
+<MediaResizeDemo />
+
+## Usage
+
+```ts
+import { ResizableMedia } from '@sereneinserenade/tiptap-extensions/media-resize'
+
+editor.commands.setMedia({ 'media-type': 'img', src: '/photo.jpg', width: 320 })
+```
+
+Typing `![alt](url)` also inserts an image.
+
+## Options
+
+<AutoTypeTable path="../src/media-resize/resizableMedia.ts" name="ResizableMediaOptions" />
+
+## Commands
+
+| Command | What it does |
+| --- | --- |
+| `setMedia(options)` | Inserts an image or video. |
+
+<AutoTypeTable path="../src/media-resize/resizableMedia.ts" name="SetMediaOptions" />
+
+## Styling
+
+Style `.media-node-view`, `.media-node-view__toolbar` and `.media-node-view__handle`. Alignment and float are on the `data-align` and `data-float` attributes.

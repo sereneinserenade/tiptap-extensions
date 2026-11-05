@@ -32,7 +32,9 @@ import {
 import { Decoration, DecorationSet } from "@tiptap/pm/view";
 
 export interface SearchAndReplaceOptions {
+	/** Class on every match. The current match also gets `<class>-current`. */
 	searchResultClass: string;
+	/** Treat the search term as plain text. Set to `false` to search with a regex. */
 	disableRegex: boolean;
 }
 

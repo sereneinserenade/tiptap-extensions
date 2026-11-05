@@ -1,0 +1,41 @@
+---
+title: Search and replace
+description: Find, step through and replace text, with case sensitivity and opt-in regex.
+---
+
+<SearchAndReplaceDemo />
+
+## Usage
+
+```ts
+import { SearchAndReplace } from '@sereneinserenade/tiptap-extensions/search-and-replace'
+
+editor.commands.setSearchTerm('cat')
+editor.commands.setReplaceTerm('dog')
+editor.commands.replace()
+
+const { results, resultIndex } = editor.storage.searchAndReplace
+```
+
+Regex is off by default. Pass `disableRegex: false` to search with a regular expression.
+
+## Options
+
+<AutoTypeTable path="../src/search-and-replace/searchAndReplace.ts" name="SearchAndReplaceOptions" />
+
+## Commands
+
+| Command | What it does |
+| --- | --- |
+| `setSearchTerm(term)` | Highlights every match. |
+| `setReplaceTerm(term)` | Sets the replacement text. |
+| `setCaseSensitive(value)` | Matches case when true. |
+| `resetIndex()` | Moves back to the first match. |
+| `nextSearchResult()` | Moves to the next match, wrapping at the end. |
+| `previousSearchResult()` | Moves to the previous match, wrapping at the start. |
+| `replace()` | Replaces the current match. |
+| `replaceAll()` | Replaces every match. |
+
+## Styling
+
+Every match gets `.search-result`. The current match also gets `.search-result-current`.
