@@ -1,0 +1,36 @@
+---
+title: Track changes
+description: Word style suggestions. Edits become insertion and deletion marks that can be accepted or rejected.
+---
+
+<TrackChangesDemo />
+
+## Usage
+
+`TrackChangesKit` adds the `TrackChanges` extension and the `insertion`, `deletion` and `formatChange` marks it writes.
+
+```ts
+import { TrackChangesKit } from '@sereneinserenade/tiptap-extensions/track-changes'
+
+const editor = new Editor({ extensions: [StarterKit, TrackChangesKit] })
+
+editor.chain().setCurrentUser({ id: 1, name: 'Ada' }).setTrackChangesActive(true).run()
+```
+
+## Options
+
+<AutoTypeTable path="../src/track-changes/trackChanges.ts" name="TrackChangesOptions" />
+
+## Commands
+
+| Command | What it does |
+| --- | --- |
+| `setTrackChangesActive(value)` | Turns tracking on or off. |
+| `toggleTrackChangesActive()` | Flips tracking. |
+| `setCurrentUser(user)` | Sets who new changes belong to. |
+| `acceptChanges(range?)` | Accepts changes in the range, or in the selection. |
+| `rejectChanges(range?)` | Rejects changes in the range, or in the selection. |
+
+## Styling
+
+Insertions render with `.ins`, deletions with `.del` and format changes with `.formatChange`.

@@ -1,4 +1,4 @@
-name: Deploy demo to GitHub Pages
+name: Deploy docs to GitHub Pages
 
 on:
   push:
@@ -27,12 +27,12 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm ci
-      - run: npm run demo:build
+      - run: npm run docs:build
         env:
-          DEMO_BASE: /tiptap-extensions/
+          DOCS_BASE_PATH: /tiptap-extensions
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: demo/dist
+          path: docs/out
       - id: deployment
         uses: actions/deploy-pages@v4

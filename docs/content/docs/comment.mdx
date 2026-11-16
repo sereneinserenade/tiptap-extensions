@@ -1,0 +1,31 @@
+---
+title: Comments
+description: Google Docs style comments. The mark stores only an id, so threads live wherever you keep them.
+---
+
+<CommentDemo />
+
+## Usage
+
+```ts
+import { CommentExtension } from '@sereneinserenade/tiptap-extensions/comment'
+
+CommentExtension.configure({
+  onCommentActivated: (commentId) => setActiveThread(commentId),
+})
+```
+
+## Options
+
+<AutoTypeTable path="../src/comment/comment.ts" name="CommentOptions" />
+
+## Commands
+
+| Command | What it does |
+| --- | --- |
+| `setComment(commentId)` | Marks the selection with a comment id. |
+| `unsetComment(commentId)` | Removes every mark with that id. |
+
+## Styling
+
+Commented text renders as `span[data-comment-id]`.

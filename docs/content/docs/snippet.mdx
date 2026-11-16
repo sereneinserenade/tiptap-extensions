@@ -1,0 +1,20 @@
+---
+title: Snippets
+description: Drag saved HTML snippets into the editor. Your draggable sets the snippet HTML on the drag event, the extension drops it in place.
+---
+
+<SnippetDemo />
+
+## Usage
+
+```tsx
+import { Snippet } from '@sereneinserenade/tiptap-extensions/snippet'
+
+<li draggable onDragStart={(e) => e.dataTransfer.setData('snippet', html)}>
+  Signature
+</li>
+```
+
+## Options
+
+<AutoTypeTable path="../src/snippet/snippet.ts" name="SnippetOptions" />

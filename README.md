@@ -2,7 +2,7 @@
 
 Nine [Tiptap 3](https://tiptap.dev) extensions in one tree-shakable package. Import what you use and nothing else reaches your bundle. No framework dependency, so they work with React, Vue, Svelte or plain JS.
 
-**[Live demos](https://sereneinserenade.github.io/tiptap-extensions/)**
+**[Docs and live demos](https://sereneinserenade.github.io/tiptap-extensions/)**
 
 ```bash
 npm i @sereneinserenade/tiptap-extensions
@@ -26,7 +26,7 @@ import { CommentExtension } from '@sereneinserenade/tiptap-extensions'
 | `Video` | `/video` | Video node with URL, markdown and file drop insertion |
 | `Snippet` | `/snippet` | Drag saved HTML snippets into the editor |
 
-Each demo page shows the code it runs, see [`demo/src/demos`](demo/src/demos).
+Each extension has a docs page with a live demo, its options and its commands. The demo source is in [`docs/components/demos`](docs/components/demos).
 
 ## Styling
 
@@ -40,7 +40,7 @@ The extensions render plain class names and attributes and ship no CSS. Style th
 - autocomplete: `.autocomplete-suggestion::after { content: attr(data-autocomplete) }`
 - media resize: `.media-node-view`, `.media-node-view__toolbar`, `.media-node-view__handle`
 
-[`demo/src/style.css`](demo/src/style.css) has a working set.
+[`docs/app/global.css`](docs/app/global.css) has a working set.
 
 ## Coming from the single packages
 
@@ -58,7 +58,7 @@ The old `@sereneinserenade/tiptap-*` packages keep working. To switch, change th
 
 ```bash
 npm i
-npm run demo              # demo site with live reload
+npm run docs              # docs site with live demos
 npm test                  # vitest
 npm run build             # dist via tsup
 npm run check:treeshake   # proves each export bundles alone

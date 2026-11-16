@@ -1,0 +1,40 @@
+---
+title: Autocomplete
+description: Gmail style completion. Type / to ask for text that fits between what comes before and after the cursor.
+---
+
+<AutocompleteDemo />
+
+## Usage
+
+```ts
+import { TiptapAutocomplete } from '@sereneinserenade/tiptap-extensions/autocomplete'
+
+TiptapAutocomplete.configure({
+  fetchAutoCompleteSuggestion: async ({ contextBefore, contextAfter }) => {
+    const res = await fetch('/api/complete', {
+      method: 'POST',
+      body: JSON.stringify({ contextBefore, contextAfter }),
+    })
+    return (await res.json()).suggestion
+  },
+})
+```
+
+Tab accepts the suggestion and Escape rejects it.
+
+## Options
+
+<AutoTypeTable path="../src/autocomplete/autocomplete.ts" name="TiptapAutocompleteOptions" />
+
+## Commands
+
+| Command | What it does |
+| --- | --- |
+| `fetchAutoCompleteSuggestion()` | Fetches a suggestion at the cursor. |
+| `applySuggestion()` | Inserts the shown suggestion. |
+| `rejectSuggestion()` | Hides the shown suggestion. |
+
+## Styling
+
+Show the suggestion with `.autocomplete-suggestion::after { content: attr(data-autocomplete) }`.

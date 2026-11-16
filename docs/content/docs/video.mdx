@@ -1,0 +1,25 @@
+---
+title: Video
+description: A block video node. Insert by URL, by markdown style ![](url), or by dropping a video file.
+---
+
+<VideoDemo />
+
+## Usage
+
+```ts
+import { Video } from '@sereneinserenade/tiptap-extensions/video'
+
+editor.commands.setVideo('https://example.com/clip.mp4')
+```
+
+## Options
+
+<AutoTypeTable path="../src/video/video.ts" name="VideoOptions" />
+
+## Commands
+
+| Command | What it does |
+| --- | --- |
+| `setVideo(src)` | Inserts a video. |
+| `toggleVideo(src)` | Inserts a video, or turns the selected one back into a paragraph. |

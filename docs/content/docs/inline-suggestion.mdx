@@ -1,0 +1,33 @@
+---
+title: Inline suggestion
+description: Copilot style ghost text. Press Tab to fetch a suggestion and Tab again to accept it.
+---
+
+<InlineSuggestionDemo />
+
+## Usage
+
+```ts
+import { InlineSuggestion } from '@sereneinserenade/tiptap-extensions/inline-suggestion'
+
+InlineSuggestion.configure({
+  fetchAutocompletion: async (existingText) => {
+    const res = await fetch('/api/complete', { method: 'POST', body: existingText })
+    return res.text()
+  },
+})
+```
+
+## Options
+
+<AutoTypeTable path="../src/inline-suggestion/inlineSuggestion.ts" name="InlineSuggestionOptions" />
+
+## Commands
+
+| Command | What it does |
+| --- | --- |
+| `fetchSuggestion()` | Accepts the shown suggestion, or fetches one for the current node. Tab runs it. |
+
+## Styling
+
+The suggestion is in the `data-inline-suggestion` attribute. Show it with `[data-inline-suggestion]::after { content: attr(data-inline-suggestion) }`.

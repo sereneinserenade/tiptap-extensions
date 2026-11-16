@@ -1,0 +1,39 @@
+---
+title: LanguageTool
+description: Grammar and spell checking through a LanguageTool server. Only edited paragraphs are re-checked.
+---
+
+<LanguageToolDemo />
+
+## Usage
+
+```ts
+import { LanguageTool } from '@sereneinserenade/tiptap-extensions/languagetool'
+
+LanguageTool.configure({
+  apiUrl: 'https://your-server.example.com/v2/check',
+  language: 'en-US',
+})
+
+const { match, loading } = editor.storage.languagetool
+```
+
+The public API at `api.languagetool.org` allows about 20 requests a minute. Run your own server for real use.
+
+## Options
+
+<AutoTypeTable path="../src/languagetool/languagetool.ts" name="LanguageToolOptions" />
+
+## Commands
+
+| Command | What it does |
+| --- | --- |
+| `proofread()` | Checks the whole document now. |
+| `toggleLanguageTool()` | Turns checking on or off. |
+| `acceptLanguageToolSuggestion(text)` | Replaces the active match with `text`. |
+| `ignoreLanguageToolSuggestion()` | Hides the active match and calls `onIgnore`. |
+| `resetLanguageToolMatch()` | Clears the active match. |
+
+## Styling
+
+Every match gets `.lt` and `.lt-<issueType>`, e.g. `.lt-misspelling` or `.lt-grammar`.
