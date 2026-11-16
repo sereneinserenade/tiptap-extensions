@@ -125,3 +125,4 @@ span[data-comment-id] { background: var(--comment); border-bottom: 2px solid var
   main { padding: 24px 16px; }
   .split { grid-template-columns: 1fr; }
 }
+.toolbar .grow { flex: 1 1 220px; min-width: 0; }
